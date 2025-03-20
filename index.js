@@ -1,7 +1,9 @@
 const express = require('express')
 const {graphqlHTTP} = require('express-graphql')
 const app = express();
-const {GraphQLSchema} = require("graphql")
+const {GraphQLSchema,
+GraphQlObjectType
+} = require("graphql")
 
 
 const PORT = 5000
