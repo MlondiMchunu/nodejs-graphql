@@ -3,6 +3,28 @@ console.log({ starting: true });
 const express = require('express');
 const app = express();
 
+const { graphqlHTTP } = require('express-graphql');
+const { GraphQLSchema, GraphQLObjectType, GraphQLString } = require('graphql');
+
+const query = new GraphQLObjectType({
+    name: 'RootQuery',
+    description: 'The Root query',
+    fields: {
+        viewer: {
+            type: GraphQLString,
+            resolve() {
+                return 'viewer';
+            }
+        },
+        hello: {
+            type: GraphQLString,
+            resolve() {
+                return 'Hello World'
+            }
+        }
+    }
+})
+
 app.use('/graphql', (req, res) => {
     res.send({ data: true })
 });
