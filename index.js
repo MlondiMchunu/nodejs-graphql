@@ -14,12 +14,16 @@ const schema = new GraphQLSchema({
     query: new GraphQLObjectType({
         name: 'Hello World',
         fields: () => ({
-            message: { type: GraphQLString}
+            message: {
+                type: GraphQLString,
+                resolve: () => `Hello World`
+            }
         })
     })
 })
 
 app.use('/graphql', graphqlHTTP({
+    schema:schema,
     graphql: true
 }))
 
