@@ -1,5 +1,8 @@
 const express = require('express')
 const { graphqlHTTP } = require('express-graphql')
+require('babel-register');
+require('./server');
+
 
 //needed to create a query
 const { GraphQLSchema,
@@ -16,15 +19,15 @@ const query = new GraphQLObjectType({
     name: 'HelloWorld',
     description: 'The root query',
     fields: {
-        /*viewer: {
+        viewer: {
             type: GraphQLString,
             resolve() {
                 return 'viewer';
             }
-        },*/
-        hello:{
-            type:GraphQLString,
-            resolve(){
+        },
+        hello: {
+            type: GraphQLString,
+            resolve() {
                 return 'Hello World!'
             }
         }
@@ -38,7 +41,7 @@ const schema = new GraphQLSchema({
 
 app.use('/graphql', graphqlHTTP({
     schema: schema,
-    graphiql:true //enables the GraphiQL UI for testing
+    graphiql: true //enables the GraphiQL UI for testing
 }))
 
 app.use(express.json());
