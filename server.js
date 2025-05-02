@@ -27,10 +27,13 @@ const query = new GraphQLObjectType({
 
 const schema = new GraphQLSchema({
     query: query
+
 });
 
-app.use('/graphql', graphqlHTTP({ schema: schema })
-);
+app.use('/graphql', graphqlHTTP({
+    schema: schema,
+    graphiql: true
+}));
 
 app.listen(5000, () => {
     console.log(`Server running on port 5000`)
