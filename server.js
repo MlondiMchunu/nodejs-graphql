@@ -21,6 +21,17 @@ const RootQuery = new GraphQLObjectType({
             resolve() {
                 return 'Hello World'
             }
+        },
+        node: {
+            type: GraphQLString,
+            args: {
+                id: {
+                    type: new GraphQLNonNull(GraphQLID)
+                }
+            },
+            resolve(source, args) {
+                return inMemoryStore[args.key]
+            }
         }
     }
 });
