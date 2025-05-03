@@ -6,7 +6,7 @@ const app = express();
 const { graphqlHTTP } = require('express-graphql');
 const { GraphQLSchema, GraphQLObjectType, GraphQLString,GraphQLNonNull, GraphQLID } = require('graphql');
 
-const query = new GraphQLObjectType({
+const RootQuery = new GraphQLObjectType({
     name: 'RootQuery',
     description: 'The Root query',
     fields: {
@@ -26,7 +26,7 @@ const query = new GraphQLObjectType({
 });
 
 const schema = new GraphQLSchema({
-    query: query
+    query: RootQuery
 
 });
 
