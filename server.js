@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 
 const { graphqlHTTP } = require('express-graphql');
-const { GraphQLSchema, GraphQLObjectType, GraphQLString,GraphQLNonNull, GraphQLID } = require('graphql');
+const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLID } = require('graphql');
 
 const RootQuery = new GraphQLObjectType({
     name: 'RootQuery',
@@ -20,6 +20,32 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLString,
             resolve() {
                 return 'Hello World'
+            }
+        }
+    }
+});
+
+let inMemoryStore = {};
+const RootMutation = new GraphQLObjectType({
+    name: 'RootMutation',
+    description: 'The root mutation',
+    fields: {
+        setNode: {
+            type: GraphQLString,
+            args: {
+                id: {
+                    type: new GraphQLNonNull(GraphQLID)
+                },
+                value: {
+                    type: new GraphQLNonNull(GraphQLID)
+                },
+                value: {
+                    type: new GraphQLNonNull(GraphQLString),
+                }
+            },
+            resolve(source, args) {
+                inMemoryStore[args.key] = args.value;
+                return inMemoryStore[args.key];
             }
         }
     }
