@@ -36,7 +36,7 @@ const RootQuery = new GraphQLObjectType({
     }
 });
 
-let inMemoryStore = {};
+let inMemoryStore = {}; //whwnever you restart the server, it will clear data
 const RootMutation = new GraphQLObjectType({
     name: 'RootMutation',
     description: 'The root mutation',
@@ -56,7 +56,7 @@ const RootMutation = new GraphQLObjectType({
                 return inMemoryStore[args.key];
             }
         },
-        profile:{
+        setProfile:{
             type: GraphQLString,
             args:{
                 id:{
