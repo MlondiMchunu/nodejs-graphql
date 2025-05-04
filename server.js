@@ -56,17 +56,17 @@ const RootMutation = new GraphQLObjectType({
                 return inMemoryStore[args.key];
             }
         },
-        setProfile:{
+        setProfile: {
             type: GraphQLString,
-            args:{
-                id:{
+            args: {
+                id: {
                     type: new GraphQLNonNull(GraphQLID)
                 },
-                value:{
+                value: {
                     type: new GraphQLNonNull(GraphQLString)
                 }
             },
-            resolve(source,args){
+            resolve(source, args) {
                 inMemoryStore[args.key] = args.value;
                 return inMemoryStore[args.key];
             }
