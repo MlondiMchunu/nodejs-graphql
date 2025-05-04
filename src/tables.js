@@ -14,6 +14,20 @@ export const users = sql.define({
     }]
 });
 
+export const usersFriends = sql.define({
+    name:'users_friends',
+    columns:[{
+        name:'user_id_a',
+        dataType:'int',
+    },{
+        name:'user_id_b',
+        dataType:'int'
+    },{
+        name:'level',
+        dataType:'text',
+    }]
+})
+
 export const posts = sql.define({
     name: 'posts',
     columns: [{
