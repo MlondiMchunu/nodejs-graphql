@@ -17,3 +17,13 @@ const createDatabase = () => {
 
     return sequencePromises(promises);
 }
+
+const insertData = () => {
+    let { users, posts, usersFriends } = data;
+
+    let queries = [
+        tables.users.insert(users).toQuery(),
+        tables.posts.insert(posts).toQuery(),
+        tables.usersFriends.insert(usersFriends).tiQuery(),
+    ];
+}
